@@ -41,9 +41,6 @@ const Timer = () => {
       setTimerLength((timerLength) => timerLength - 1);
     }
 
-    if (timerOn) {
-      setTimerDone(false);
-    }
     return () => {
       clearInterval(interval);
     };
@@ -52,6 +49,7 @@ const Timer = () => {
   //Switch Event Mode Handler
   useEffect(() => {
     if (timerLength === 0 && seconds === 0) {
+      endedSound.play();
       setTimerOn(false);
       setTimerDone(true);
       setSessionType((prevType) => {
@@ -60,6 +58,7 @@ const Timer = () => {
         if (prevType === "Long Break") return "Work";
       });
     }
+    // eslint-disable-next-line
   }, [timerLength, seconds]);
 
   //Switching Timers: From Work Mode to Break Mode
@@ -86,10 +85,6 @@ const Timer = () => {
     if (sessionType === "Work" && timerDone) {
       setSessionNumber((prevNumber) => prevNumber + 1);
     }
-    if (timerDone) {
-      endedSound.play();
-    }
-    // eslint-disable-next-line
   }, [sessionType, timerDone]);
 
   //Long Break Handler
