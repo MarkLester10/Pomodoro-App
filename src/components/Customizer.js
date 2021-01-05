@@ -39,7 +39,7 @@ const Customizer = (props) => {
               startIcon={<RemoveIcon />}
               onClick={() =>
                 setWorkLength((prevLength) =>
-                  prevLength === 0 ? 0 : prevLength - 1
+                  prevLength === 1 ? 1 : prevLength - 1
                 )
               }
             ></Button>
@@ -67,7 +67,7 @@ const Customizer = (props) => {
               startIcon={<RemoveIcon />}
               onClick={() =>
                 setBreakLength((prevLength) =>
-                  prevLength === 0 ? 0 : prevLength - 1
+                  prevLength === 1 ? 1 : prevLength - 1
                 )
               }
             ></Button>
@@ -95,7 +95,7 @@ const Customizer = (props) => {
               startIcon={<RemoveIcon />}
               onClick={() =>
                 setLongBreakLength((prevLength) =>
-                  prevLength === 0 ? 0 : prevLength - 1
+                  prevLength === 1 ? 1 : prevLength - 1
                 )
               }
             ></Button>

@@ -33,24 +33,16 @@ const Timer = () => {
     const interval = setInterval(() => {
       if (timerOn) {
         setSeconds((seconds) => seconds - 1);
-        if (seconds === 0) {
-          setSeconds((seconds) => seconds + 59);
-          setTimerLength((timerLength) => timerLength - 1);
-        }
       }
     }, 1000);
 
-    if (timerOn) {
-      setTimerDone(false);
+    if (seconds === 0) {
+      setSeconds((seconds) => seconds + 59);
+      setTimerLength((timerLength) => timerLength - 1);
     }
-    return () => {
-      clearInterval(interval);
-    };
-  }, [timerOn, seconds]);
 
-  //Timer Done Event Handler
-  useEffect(() => {
-    if (timerLength === 0) {
+    //Switch Event Mode Handler
+    if (timerLength === 0 && seconds === 0) {
       setTimerOn(false);
       setTimerDone(true);
       setSessionType((prevType) => {
@@ -59,7 +51,14 @@ const Timer = () => {
         if (prevType === "Long Break") return "Work";
       });
     }
-  }, [timerLength]);
+
+    if (timerOn) {
+      setTimerDone(false);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timerOn, seconds, timerLength]);
 
   //Switching Timers: From Work Mode to Break Mode
   useEffect(() => {
