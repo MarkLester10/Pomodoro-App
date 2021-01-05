@@ -38,7 +38,7 @@ const Timer = () => {
           setTimerLength((timerLength) => timerLength - 1);
         }
       }
-    }, 1);
+    }, 1000);
 
     if (timerOn) {
       setTimerDone(false);
